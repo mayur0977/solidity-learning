@@ -6,21 +6,19 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "num",
-						"type": "uint256"
-					}
-				],
-				"name": "add",
-				"outputs": [],
+				"inputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
+				"type": "constructor"
 			},
 			{
-				"inputs": [],
-				"name": "get",
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "balances",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -32,27 +30,59 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
 					{
-						"internalType": "uint256",
-						"name": "num",
-						"type": "uint256"
+						"internalType": "address",
+						"name": "",
+						"type": "address"
 					}
 				],
-				"name": "multiply",
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "pause",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "paused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
 						"internalType": "uint256",
-						"name": "num",
+						"name": "amount",
 						"type": "uint256"
 					}
 				],
-				"name": "subtract",
+				"name": "transfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "unpause",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -71,7 +101,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Calculator.sol": "Calculator"
+			"contracts/Modifiers-Exercise.sol": "PausableToken"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -85,12 +115,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Calculator.sol": {
-			"keccak256": "0xde3ee0031f480f38022083c4554e69f8a20f57e00b3c33ebde1a61794cf6993b",
+		"contracts/Modifiers-Exercise.sol": {
+			"keccak256": "0x2e5497d307af0889d825588ff399eaadfb0f055cd0905aa82ecbbee1ccc53182",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4bfbb5b86958523f805bd60036a7d0ea62fa57ca127d3bb0a918278ff6e8d162",
-				"dweb:/ipfs/QmVWojRYhToUDXySJd47WkuYRmSLTBoQW3nxLpE4hCP43s"
+				"bzz-raw://39095b54edffc6b2a9dcbe4832bdb581fa83d9b8cbbe7f001e0e44622136e61a",
+				"dweb:/ipfs/QmYq9K5JnKWqJsYpcKdWm68U7svUP3zMZ3N5fygqnnbkxV"
 			]
 		}
 	},

@@ -20,3 +20,4 @@ contract Calculator {
         return result;
     }
 }
+
