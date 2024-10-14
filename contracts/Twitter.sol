@@ -17,6 +17,14 @@ pragma solidity ^0.8.26;
 // 2. Create a construnvtor function to set an owner of contract
 // 3. Create a modifier called onlyOwner
 // 4. Use onlyOwner on the changeTweetLength function
+// -------------------------
+// 1. Add id to Tweet Struct to make every Tweet Unique
+// 2. Set the id yo be the Tweet[] length
+// HINT: You can do it in createTweet function
+// 3. Add a function to like the tweet.
+// HINT: make sure you can unlike only if count is greater then 0
+// 4. Add a function to unlike the tweet.
+// 5. Make both function external.
 
 contract Twitter {
     // define stuct
