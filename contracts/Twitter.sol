@@ -28,8 +28,9 @@ pragma solidity ^0.8.26;
 
 contract Twitter {
     // define stuct
-    uint16 public MAX_TWEET_LENGTH = 10;
+    uint16 public MAX_TWEET_LENGTH = 250;
     struct Tweet {
+        uint256 id;
         address author;
         string content;
         uint256 timestamp;
@@ -60,12 +61,24 @@ contract Twitter {
         );
 
         Tweet memory newTweet = Tweet({
+            id: tweets[msg.sender].length,
             author: msg.sender,
             content: _tweet,
             timestamp: block.timestamp,
             likes: 0
         });
         tweets[msg.sender].push(newTweet);
+    }
+
+    function likeTweet(address author, uint256 id) external {
+        require(tweets[author][id].id == id, "TWEET DOES NOT EXIST");
+        tweets[author][id].likes++;
+    }
+
+    function unlikeTweet(address author, uint256 id) external {
+        require(tweets[author][id].id == id, "TWEET DOES NOT EXIST");
+        require(tweets[author][id].likes > 0, "TWEET HAS NO LIKES");
+        tweets[author][id].likes--;
     }
 
     function getTweet(uint256 i) public view returns (Tweet memory) {
