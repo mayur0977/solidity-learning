@@ -25,6 +25,11 @@ pragma solidity ^0.8.26;
 // HINT: make sure you can unlike only if count is greater then 0
 // 4. Add a function to unlike the tweet.
 // 5. Make both function external.
+// -------------------------------
+// 1. Create Event for creating the tweet,called TweetCreated use parameters like id, author,content,timestamp
+// 2. Emit the Event in the createTweet() funtion below
+// 3. Create Event for liking the tweet, called TweetLiked use parameters like ,liker,tweetAuthor,tweetId,newLikeCount
+// 4. Emit the event in the likeTweet() funtion below
 
 contract Twitter {
     // define stuct
@@ -39,6 +44,26 @@ contract Twitter {
 
     mapping(address => Tweet[]) public tweets;
     address public owner;
+
+    event TweetCreated(
+        uint256 id,
+        address author,
+        string content,
+        uint256 timestamp
+    );
+
+    event TweetLiked(
+        address liker,
+        address tweetAuthor,
+        uint256 tweetId,
+        uint256 newLikecount
+    );
+    event TweetUnliked(
+        address unliker,
+        address tweetAuthor,
+        uint256 tweetId,
+        uint256 newLikecount
+    );
 
     constructor() {
         owner = msg.sender;
@@ -68,17 +93,27 @@ contract Twitter {
             likes: 0
         });
         tweets[msg.sender].push(newTweet);
+
+        emit TweetCreated(
+            newTweet.id,
+            newTweet.author,
+            newTweet.content,
+            newTweet.timestamp
+        );
     }
 
     function likeTweet(address author, uint256 id) external {
         require(tweets[author][id].id == id, "TWEET DOES NOT EXIST");
         tweets[author][id].likes++;
+
+        emit TweetLiked(msg.sender, author, id, tweets[author][id].likes);
     }
 
     function unlikeTweet(address author, uint256 id) external {
         require(tweets[author][id].id == id, "TWEET DOES NOT EXIST");
         require(tweets[author][id].likes > 0, "TWEET HAS NO LIKES");
         tweets[author][id].likes--;
+        emit TweetUnliked(msg.sender, author, id, tweets[author][id].likes);
     }
 
     function getTweet(uint256 i) public view returns (Tweet memory) {
