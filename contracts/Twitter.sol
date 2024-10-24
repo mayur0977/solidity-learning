@@ -30,6 +30,11 @@ pragma solidity ^0.8.26;
 // 2. Emit the Event in the createTweet() funtion below
 // 3. Create Event for liking the tweet, called TweetLiked use parameters like ,liker,tweetAuthor,tweetId,newLikeCount
 // 4. Emit the event in the likeTweet() funtion below
+// -------------------------------
+// 1. Create a function ,getTotalLikes, to get total Tweet Likes for the user , USE parameters of author
+// 2. Loop over all the tweets
+// 3. Sum up totalLikes
+// 4. Return totalLikes
 
 contract Twitter {
     // define stuct
@@ -76,6 +81,14 @@ contract Twitter {
 
     function changeTweetLength(uint16 _newTweetLength) public onlyOwner {
         MAX_TWEET_LENGTH = _newTweetLength;
+    }
+
+    function getTotalLikes(address _author) view  external returns (uint256) {
+        uint256 totalLikes = 0;
+        for (uint256 i = 0; i < tweets[_author].length; i++) {
+            totalLikes += tweets[_author][i].likes;
+        }
+        return totalLikes;
     }
 
     function createTweet(string memory _tweet) public {
